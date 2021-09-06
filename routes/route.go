@@ -7,7 +7,7 @@ import (
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/lavender-snow/site/app/controllers"
+	"github.com/lavender-snow/TweetDeleteApp/app/controllers"
 )
 
 //Routes はルート情報を設定します
