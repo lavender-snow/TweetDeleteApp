@@ -1,4 +1,4 @@
-module github.com/lavender-snow/site
+module github.com/lavender-snow/TweetDeleteApp
 
 go 1.17
 

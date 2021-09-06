@@ -4,9 +4,9 @@ import (
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 
-	"github.com/lavender-snow/site/config"
-	"github.com/lavender-snow/site/routes"
-	"github.com/lavender-snow/site/utils"
+	"github.com/lavender-snow/TweetDeleteApp/config"
+	"github.com/lavender-snow/TweetDeleteApp/routes"
+	"github.com/lavender-snow/TweetDeleteApp/utils"
 )
 
 func main() {
@@ -23,5 +23,10 @@ func main() {
 	routes.Routes(engine)
 
 	// 開始
-	engine.Run(":8080")
+	if config.Config.RunMode == "https" {
+		engine.RunTLS(config.Config.PortNo, config.Config.CertFile, config.Config.KeyFile)
+	} else {
+		engine.Run(config.Config.PortNo)
+	}
+
 }
