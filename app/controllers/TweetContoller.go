@@ -8,7 +8,7 @@ import (
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/dghubble/oauth1"
 	twitterOAuth1 "github.com/dghubble/oauth1/twitter"
-	"github.com/lavender-snow/site/config"
+	"github.com/lavender-snow/TweetDeleteApp/config"
 )
 
 // Tweet ツイートの情報を格納する構造体
