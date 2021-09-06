@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja" class="h-100">
+<head>
+<meta charset="UTF-8">
+
+<meta name="Description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link href="/assets/css/site.css" rel="stylesheet">
+<title>TweetDelete</title>
+
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta name="author" content="syuzen" />
+
+</head>
+
+<body class="d-flex flex-column h-100">
+	<header>
+		<div class="navbar navbar-dark bg-dark header sticky-top">
+			<div class="container-fluid">
+          <div>
+            <strong class="navbar-brand">DeleteTweet</strong>
+          </div>
+          <div>
+            <a href="/logout" class="btn btn-outline-danger">ログアウト</a>
+          </div>
+			</div>
+		</div>
+	</header>
+  <main>
+    <form action="/tweet/delete" method="POST">
+    <div class="album py-5">
+      <div class="container">
+        <h1>{{ .UserName }}のツイート</h1>
+        <p class="text-end">{{.count}}件表示</p>
+        <div class="row">
+        {{ range .Tweets}}
+          <div class="card shadow-sm m-1 p-3">
+            <div class="row">
+              <div class="card-check col-sm-1 d-flex align-items-center justify-content-center">
+                <input class="form-check-input" type="checkbox" value="{{.ID}}" name="tweetid">
+              </div>
+              <div class="card-main col-sm-7  d-flex align-items-center">
+                <div>{{.Text}}</div>
+              </div>
+              <div class="card-counter col-sm-4 d-flex align-items-center justify-content-center">
+                {{.CreatedAt}}　
+                <div class="card-title">
+
+                💭{{.ReplyCount}}
+                ♻{{.RetweetCount}}
+                💓{{.FavoriteCount}}
+                <a href="https://twitter.com/{{ .ScreenName }}/status/{{ .ID }}" rel="noopener noreferrer" target="_blank" role="link" class="css-4rbku5 css-18t94o4 css-1dbjc4n r-1loqt21"><img src="/assets/img/external_link_icon_153574.png" alt="ツイートリンク"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{ end }}
+        </div>
+      </div>
+    </div>
+    <div class="p-2 fixed-bottom bg-light text-end">
+      <span class="text-muted">ツイート<span id="tweet-count-label">0</span>件選択中</span>
+      <button type="button" id="delete-button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">選択したツイートを削除</button>
+    </div>
+
+      <!-- Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmModalLabel">ツイート削除確認</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            選択したツイートを削除します、よろしいですか?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-danger" type="submit">削除実行</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
